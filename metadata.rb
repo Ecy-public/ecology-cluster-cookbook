@@ -1,0 +1,10 @@
+name 'ecology_cluster'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures ecology_cluster'
+long_description 'Installs/Configures ecology_cluster'
+version '0.1.0'
+
+depends 'slurm'
+depends 'hostsfile'
