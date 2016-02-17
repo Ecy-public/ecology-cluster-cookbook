@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe 'ecology-cluster::default' do
-  # Serverspec examples can be found at
-  # http://serverspec.org/resource_types.html
-  it 'does something' do
-    skip 'Replace this with meaningful tests'
-  end
+describe file('/etc/hosts') do
+  it { should contain '192.168.123.123	default-centos-72' }
+end
+
+describe file('/etc/hosts') do
+  it { should contain '192.168.123.124	second-host' }
 end

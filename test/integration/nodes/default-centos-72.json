@@ -1,0 +1,13 @@
+{
+  "name": "default-centos-72",
+  "chef_environment": "_default_",
+  "run_list": ["role[mgmt]"],
+  "normal": {},
+  "default": {},
+  "automatic": {
+    "name": "default-centos-72",
+    "hostname": "default-centos-72",
+    "fqdn": "default-centos-72",
+    "ipaddress": "192.168.123.123"
+  }
+}
