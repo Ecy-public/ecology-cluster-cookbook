@@ -23,4 +23,12 @@ platforms:
 
 suites:
   - name: default
-    attributes:
+    provisioner:
+      named_run_list: default
+  - name: head
+    encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
+    provisioner:
+      named_run_list: head
+  - name: compute
+    provisioner:
+      named_run_list: compute

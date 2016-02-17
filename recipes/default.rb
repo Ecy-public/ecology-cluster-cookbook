@@ -22,3 +22,4 @@ hostsfile_entry '::1' do
   hostname 'localhost localhost.localdomain localhost6 localhost6.localdomain6'
 end
 
+include_recipe 'slurm::munge'
