@@ -1,4 +1,4 @@
-# ecology_cluster
+# ecology-cluster
 
 TODO: Enter the cookbook description here.
 
