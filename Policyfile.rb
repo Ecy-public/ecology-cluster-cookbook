@@ -11,7 +11,7 @@ name 'ecology-cluster'
 default_source :supermarket
 
 # run_list: chef-client will run these recipes in the order specified.
-named_run_list :default, 'ecology-cluster::default'
+run_list 'ecology-cluster::default'
 named_run_list :head, 'ecology-cluster::head'
 named_run_list :compute, 'ecology-cluster::compute'
 

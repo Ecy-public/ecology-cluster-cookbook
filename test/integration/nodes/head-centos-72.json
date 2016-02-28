@@ -1,13 +1,13 @@
 {
   "name": "head-centos-72",
-  "chef_environment": "_default_",
+  "chef_environment": "default",
   "run_list": [],
   "normal": {},
   "default": {},
   "automatic": {
     "name": "head-centos-72",
     "hostname": "head-centos-72",
-    "fqdn": "head-centos-72",
-    "ipaddress": "192.168.123.10"
+    "fqdn": "head-centos-72.localdomain",
+    "ipaddress": "192.168.33.35"
   }
 }

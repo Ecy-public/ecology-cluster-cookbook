@@ -10,25 +10,27 @@ driver:
 #    - ["forwarded_port", {guest: 80, host: 8080}]
 
 provisioner:
-  name: policyfile_zero
+  name: chef_zero
 
 ## require_chef_omnibus specifies a specific chef version to install. You can
 ## also set this to `true` to always use the latest version.
 ## see also: https://docs.chef.io/config_yml_kitchen.html
 
-  require_chef_omnibus: 12.6.0
+#  require_chef_omnibus: 12.6.0
 
 platforms:
   - name: centos-7.2
 
 suites:
   - name: default
-    provisioner:
-      named_run_list: default
+    encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
+    run_list:
+      - recipe[ecology-cluster::default]
   - name: head
     encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
-    provisioner:
-      named_run_list: head
+    run_list:
+      - role[head]
   - name: compute
-    provisioner:
-      named_run_list: compute
+    encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
+    run_list:
+      - role[compute]

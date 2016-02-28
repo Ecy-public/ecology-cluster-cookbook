@@ -5,7 +5,7 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 search(:node, '*:*',
-       filter_result: { name: ['name'],
+       filter_result: { name: ['hostname'],
                         ip: ['ipaddress']
                       }
       ).each do |result|
@@ -23,3 +23,18 @@ hostsfile_entry '::1' do
 end
 
 include_recipe 'slurm::munge'
+
+search(:node, 'role:compute',
+       filter_result: { name: ['name'],
+                        cpus: %w(cpu total)
+                      }
+      ).each do |result|
+  node['slurm']['slurm']['nodes'].push(
+    NodeName: result['name'],
+    Procs: result['cpus'],
+    State: 'DRAIN'
+  )
+end
+
+include_recipe 'yum-centos'
+include_recipe 'yum-epel'
