@@ -5,8 +5,6 @@ require 'spec_helper'
   rpc-statd
   nfs-idmapd
   nfs-server
-  slurmd
-  slurmctld
 ).each do |service_name|
   describe service(service_name) do
     it { should be_enabled }
@@ -14,10 +12,6 @@ require 'spec_helper'
   describe service(service_name) do
     it { should be_running }
   end
-end
-
-describe command('sinfo') do
-  its(:exit_status) { should eq 0 }
 end
 
 describe file('/etc/exports') do

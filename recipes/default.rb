@@ -4,13 +4,29 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-search(:node, '*:*',
-       filter_result: { name: ['hostname'],
-                        ip: ['ipaddress']
-                      }
-      ).each do |result|
-  hostsfile_entry result['ip'] do
-    hostname result['name']
+include_recipe 'omnibus_updater'
+include_recipe 'chef-client::config'
+include_recipe 'chef-client'
+
+unless Chef::Config[:solo]
+  search(:node, '*:*',
+         filter_result: { name: ['name'],
+                          ip: ['network', 'interfaces', node['ecology-cluster']['interface'], 'addresses']
+                        }
+        ).each do |result|
+    ipv4_address = nil
+    puts result
+    next unless result['ip']
+    result['ip'].each_key do |key|
+      if result['ip'][key]['family'].eql?('inet')
+        ipv4_address = key
+      end
+    end
+    puts 
+    next unless ipv4_address && result['name']
+    hostsfile_entry ipv4_address do
+      hostname result['name']
+    end
   end
 end
 
@@ -20,20 +36,6 @@ end
 
 hostsfile_entry '::1' do
   hostname 'localhost localhost.localdomain localhost6 localhost6.localdomain6'
-end
-
-include_recipe 'slurm::munge'
-
-search(:node, 'role:compute',
-       filter_result: { name: ['name'],
-                        cpus: %w(cpu total)
-                      }
-      ).each do |result|
-  node['slurm']['slurm']['nodes'].push(
-    NodeName: result['name'],
-    Procs: result['cpus'],
-    State: 'DRAIN'
-  )
 end
 
 include_recipe 'yum-centos'
