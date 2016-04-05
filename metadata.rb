@@ -4,7 +4,7 @@ maintainer_email 'david.brown@pnnl.gov'
 license 'all_rights'
 description 'Installs/Configures ecology-cluster'
 long_description 'Installs/Configures ecology-cluster'
-version '0.1.0'
+version '0.1.1'
 
 depends 'chef-client'
 depends 'omnibus_updater'
