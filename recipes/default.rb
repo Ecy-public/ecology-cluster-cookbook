@@ -40,3 +40,12 @@ end
 
 include_recipe 'yum-centos'
 include_recipe 'yum-epel'
+include_recipe 'build-essential'
+package 'netcdf-fortran-openmpi-devel'
+package 'netcdf-fortran-openmpi-static'
+package 'netcdf-fortran-openmpi'
+package 'netcdf-openmpi-devel'
+package 'netcdf-openmpi'
+package 'openmpi-devel'
+package 'openmpi'
+package 'gcc-gfortran'
