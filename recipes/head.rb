@@ -1,3 +1,4 @@
+package 'lvm2'
 lvm_volume_group 'vg00' do
   physical_volumes ['/dev/sdb', '/dev/sdc', '/dev/sdd', '/dev/sde']
   wipe_signatures true
