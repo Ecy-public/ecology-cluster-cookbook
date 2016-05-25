@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+  vagrantfiles:
+    - test/integration/Vagrantfile.rb
 
 ## The forwarded_port port feature lets you connect to ports on the VM guest via
 ## localhost on the host.

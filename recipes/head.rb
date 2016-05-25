@@ -1,5 +1,15 @@
-include_recipe 'ecology-cluster::default'
+lvm_volume_group 'vg00' do
+  physical_volumes ['/dev/sdb', '/dev/sdc', '/dev/sdd', '/dev/sde']
+  wipe_signatures true
 
+  logical_volume 'home' do
+    size        '100%VG'
+    filesystem  'xfs'
+    mount_point location: '/home', options: 'noatime,nodiratime'
+  end
+end
+
+include_recipe 'ecology-cluster::default'
 include_recipe 'nfs::server'
 
 nfs_export '/home' do

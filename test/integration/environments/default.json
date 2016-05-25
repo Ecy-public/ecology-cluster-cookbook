@@ -4,6 +4,8 @@
   "cookbook_versions": {},
   "json_class": "Chef::Environment",
   "chef_type": "environment",
-  "default_attributes": {},
+  "default_attributes": {
+    "ecology-cluster": {"interface": "enp0s3"}
+  },
   "override_attributes": {}
 }
