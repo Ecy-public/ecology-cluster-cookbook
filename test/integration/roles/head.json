@@ -2,7 +2,11 @@
   "name": "head",
   "description": "",
   "json_class": "Chef::Role",
-  "default_attributes": {},
+  "default_attributes": {
+    "ecology-cluster": {
+      "home-devices": ['/dev/sdb', '/dev/sdc', '/dev/sdd', '/dev/sde']
+    }
+  },
   "override_attributes": {},
   "chef_type": "role",
   "run_list": [

@@ -1,6 +1,6 @@
 package 'lvm2'
 lvm_volume_group 'vg00' do
-  physical_volumes ['/dev/sdb', '/dev/sdc', '/dev/sdd', '/dev/sde']
+  physical_volumes node['ecology-cluster']['home-devices']
   wipe_signatures true
 
   logical_volume 'home' do
