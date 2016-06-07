@@ -78,3 +78,5 @@ end
     not_if "firewall-cmd --zone trusted --list-sources | grep -q #{network}"
   end
 end
+
+execute 'setenforce 0'

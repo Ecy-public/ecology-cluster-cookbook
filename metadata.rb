@@ -4,7 +4,7 @@ maintainer_email 'david.brown@pnnl.gov'
 license 'all_rights'
 description 'Installs/Configures ecology-cluster'
 long_description 'Installs/Configures ecology-cluster'
-version '0.3.0'
+version '0.3.1'
 issues_url 'https://github.com/Ecy-public/ecology-cluster-cookbook/issues'
 source_url 'https://github.com/Ecy-public/ecology-cluster-cookbook'
 
