@@ -50,3 +50,31 @@ package 'lua-filesystem'
 package 'lua-posix'
 package 'lua-devel'
 package 'pkgconfig'
+package 'fail2ban-firewalld'
+package 'fail2ban-systemd'
+
+service 'firewalld' do
+  action [:enable, :start]
+end
+
+cookbook_file 'fail2ban_customizations' do
+  source 'fail2ban_customizations.conf'
+  path '/etc/fail2ban/jail.d/customization.conf'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+service 'fail2ban' do
+  action [:enable, :start]
+end
+
+%w(
+172.31.16.0/20
+172.31.32.0/20
+172.31.0.0/20
+).each do |network|
+  execute "firewall-cmd --zone=trusted --add-source #{network}" do
+    not_if "firewall-cmd --zone trusted --list-sources | grep -q #{network}"
+  end
+end
